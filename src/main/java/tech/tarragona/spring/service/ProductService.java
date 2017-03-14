@@ -14,6 +14,7 @@ import tech.tarragona.spring.repository.ProductRepository;
 @Service
 public class ProductService {
 	
+	public double importe;
 	public static final ArrayList<Product> cart = new ArrayList<Product>();
 
 	@Autowired
@@ -29,6 +30,14 @@ public class ProductService {
 		cart.add(product);
 		System.out.println(cart.toString());
 		return cart;
+	}
+	
+	@Transactional
+	public double getImporte(ArrayList<Product> cart){
+		for (Product product : cart){
+			importe += product.getPrice();
+		}
+		return importe;
 	}
 	
 	@Transactional

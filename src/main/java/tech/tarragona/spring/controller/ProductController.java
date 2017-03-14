@@ -13,10 +13,11 @@ import tech.tarragona.spring.model.Product;
 import tech.tarragona.spring.service.ProductService;
 
 @Controller
-@RequestMapping(value={"/products", "/"})
+@RequestMapping(value="/products")
 public class ProductController {
 	
-	public ArrayList<Product> cart = new ArrayList<Product>();
+	
+	
 	public final static String PRODUCTS_VIEW = "products";
 	public final static String CART_VIEW = "cart";
 	public static final String REDIRECT_PRODUCTS = "redirect:/" + PRODUCTS_VIEW;
@@ -33,10 +34,14 @@ public class ProductController {
 	
 	@GetMapping("/{id}/addToCart")
 	public String addToCart(@PathVariable Integer id, Model model){
+		
+		ArrayList<Product> cart = new ArrayList<Product>();
 		cart = productService.addToCart(id);
+		double importe = productService.getImporte(cart);
 		System.out.println("Product added to cart");
 		System.out.println(cart.toString());
 		model.addAttribute("cart", cart);
+		model.addAttribute("importe", importe);
 		return REDIRECT_CART;
 	}
 	

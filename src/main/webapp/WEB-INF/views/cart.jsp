@@ -17,6 +17,7 @@
 	<div class="container-fluid">
 		<div class="page-header">
 			<h1>Contenido del carrito</h1>
+			<h2>Importe acumulado: ${importe}</h2>
 		</div>
 		<div class="row">
 			<div class="col-md-9">
